@@ -1,6 +1,10 @@
 import React from "react"
 import {StaticQuery,graphql} from 'gatsby';
-import Layout from '../components/layout'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+
 class Product extends React.Component{
 
 componentDidMount(){
@@ -26,16 +30,27 @@ handleSubmit(sku){
   }
 }
 render(){
-  const {id,currency,price,name}=this.props;
-
+  const {id,currency,price,name,image}=this.props;
   const display_price = new Intl.NumberFormat('pl-PL', { style: 'currency', currency }).format(price);
 
   return(
     <form onSubmit={this.handleSubmit(id)}>
-      <h2>{name}</h2>
-      <h3>{display_price}</h3><h3>{currency}</h3>
-      <button type="submit">Buy</button>
+
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={image} />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroupItem>{display_price}</ListGroupItem>
+        </ListGroup>
+        <Card.Body>
+          <Button type="submit" variant="primary">Buy it!</Button>
+        </Card.Body>
+      </Card>
+
     </form>
+    
   )
 }
 }
@@ -53,22 +68,24 @@ export default () => (
               attributes {
                 name
               }
+              image
             }
           }
         }
       }
     `}
     render={data => (
-      <Layout>
+      <div>
         {data.allStripeSku.edges.map(({ node: sku }) => (
           <Product
             id={sku.id}
             currency={sku.currency}
             price={sku.price}
             name={sku.attributes.name}
+            image={sku.image}
           />
         ))}
-      </Layout>
+      </div>
     )}
   />
 )
