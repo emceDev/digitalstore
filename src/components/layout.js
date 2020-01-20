@@ -18,6 +18,7 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          author
         }
       }
     }
@@ -32,13 +33,18 @@ const Layout = ({ children }) => {
           maxWidth: 960,
           padding: `0px 1.0875rem 1.45rem`,
           paddingTop: 0,
+          justifyContent: 'space-evenly',
+          flexWrap: 'wrap',
+          display: 'flex',
         }}
       >
         <main>{children}</main>
+
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <p><a href="https://github.com/m4t1ce"> By {data.site.siteMetadata.author}</a></p>
         </footer>
       </div>
     </>

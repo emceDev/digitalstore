@@ -31,8 +31,7 @@ handleSubmit(sku){
 }
 render(){
   const {id,currency,price,name,image}=this.props;
-  const display_price = new Intl.NumberFormat('pl-PL', { style: 'currency', currency }).format(price);
-
+  const display_price = new Intl.NumberFormat('pl-PL', { style: 'currency', currency }).format(price/100);
   return(
     <form onSubmit={this.handleSubmit(id)}>
 

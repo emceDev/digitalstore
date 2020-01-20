@@ -7,8 +7,11 @@ import SEO from "../components/seo"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <h1>Nasze produkty</h1>
-    <Product />
+
+    <Product style={{
+          display:'flex',
+          flexDirection:'row',
+        }}/>
  
   </Layout>
 )
