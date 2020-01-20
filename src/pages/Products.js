@@ -74,7 +74,11 @@ export default () => (
       }
     `}
     render={data => (
-      <div>
+      <div style={{
+      justifyContent: 'space-evenly',
+      flexWrap: 'wrap',
+      display: 'flex',}}>
+        
         {data.allStripeSku.edges.map(({ node: sku }) => (
           <Product
             id={sku.id}

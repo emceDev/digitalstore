@@ -8,10 +8,7 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
 
-    <Product style={{
-          display:'flex',
-          flexDirection:'row',
-        }}/>
+    <Product/>
  
   </Layout>
 )
